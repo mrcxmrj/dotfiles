@@ -81,7 +81,7 @@ export PATH="$PATH:/opt/nvim-linux64/bin"
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 else
-  export EDITOR='mvim'
+  export EDITOR='nvim'
 fi
 
 # Aliases
@@ -114,7 +114,8 @@ alias vim="nvim"
 alias vi="nvim"
 
 # Plugins
-source /home/marcin/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/mrcxmrj/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/mrcxmrj/.zsh-plugins/eza-aliases.zsh
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -122,3 +123,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # dotfiles management
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+
+# run vscode (doesn't open in wsl)
+# alias code='/mnt/c/Users/marci/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
+export PATH=$PATH:"/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/"
