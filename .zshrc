@@ -127,3 +127,10 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 # run vscode (doesn't open in wsl)
 # alias code='/mnt/c/Users/marci/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
 export PATH=$PATH:"/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/"
+
+tldr() {
+  curl "cheat.sh/$1"
+}
+
+alias path="echo /home/mrcxmrj/.nvm/versions/node/v20.11.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/opt/nvim-linux64/bin:/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/:/opt/nvim-linux64/bin:/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/ | tr ':' '
+'"
