@@ -89,11 +89,12 @@ fi
 # git
 alias gs='git status'
 alias ga='git add'
-alias gp='git push'
+alias gph='git push'
 alias gpo='git push origin'
 alias gtd='git tag --delete'
 alias gtdr='git tag --delete origin'
 alias gr='git branch -r'
+alias gpl='git pull'
 alias gplo='git pull origin'
 alias gb='git branch '
 alias gc='git commit'
