@@ -137,5 +137,11 @@ tldr() {
 alias path="echo /home/mrcxmrj/.nvm/versions/node/v20.11.1/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/usr/lib/wsl/lib:/opt/nvim-linux64/bin:/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/:/opt/nvim-linux64/bin:/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/ | tr ':' '
 '"
 
+#bat config
+alias cat=bat
+export BAT_THEME="base16"
+#set bat as manpager, add highlighting
+export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
+
 # this should be at the end
 eval "$(zoxide init zsh)"
