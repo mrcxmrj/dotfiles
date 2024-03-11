@@ -126,8 +126,7 @@ export NVM_DIR="$HOME/.nvm"
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # run vscode (doesn't open in wsl)
-# alias code='/mnt/c/Users/marci/AppData/Local/Programs/Microsoft\ VS\ Code/Code.exe'
-export PATH=$PATH:"/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/"
+export PATH=$PATH:"/mnt/c/Users/mrcxmrj/AppData/Local/Programs/Microsoft VS Code/bin/"
 export PATH=$PATH:"/home/mrcxmrj/.local/bin/"
 
 tldr() {
