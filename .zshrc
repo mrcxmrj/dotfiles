@@ -146,3 +146,5 @@ alias cat=bat
 export BAT_THEME="base16"
 #set bat as manpager, add highlighting
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
+
+alias fd=fdfind
