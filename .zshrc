@@ -134,6 +134,10 @@ tldr() {
   curl "cheat.sh/$1"
 }
 
+cd() {
+  builtin cd "$@" && ls
+}
+
 alias path="echo $PATH | tr ':' '
 '"
 
@@ -142,6 +146,3 @@ alias cat=bat
 export BAT_THEME="base16"
 #set bat as manpager, add highlighting
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
-
-# this should be at the end
-eval "$(zoxide init zsh)"
