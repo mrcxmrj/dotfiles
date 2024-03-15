@@ -3,5 +3,5 @@
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
     	branch = master
 [submodule ".config/kickstart-modular.nvim"]
-	path = .config/kickstart-modular.nvim
+	path = .config/nvim
 	url = https://github.com/mrcxmrj/kickstart-modular.nvim
