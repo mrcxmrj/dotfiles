@@ -1,11 +1,13 @@
-# kickstart.nvim
+# kickstart-modular.nvim
 
 ## Introduction
+
+*This is a fork of [nvim-lua/kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim) that moves from a single file to a multi file configuration.*
 
 A starting point for Neovim that is:
 
 * Small
-* Single-file
+* Modular
 * Completely Documented
 
 **NOT** a Neovim distribution, but instead a starting point for your configuration.
@@ -21,12 +23,14 @@ If you are experiencing issues, please make sure you have the latest versions.
 
 ### Install External Dependencies
 
-> **NOTE** 
+> **NOTE**
 > [Backup](#FAQ) your previous configuration (if any exists)
 
 External Requirements:
 - Basic utils: `git`, `make`, `unzip`, C Compiler (`gcc`)
 - [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
+- A [Nerd Font](https://www.nerdfonts.com/): optional, provides various icons
+  - if you have it set `vim.g.have_nerd_font` in `init.lua` to true
 - Language Setup:
   - If want to write Typescript, you need `npm`
   - If want to write Golang, you will need `go`
@@ -43,12 +47,14 @@ Neovim's configurations are located under the following paths, depending on your
 | Windows (cmd)| `%userprofile%\AppData\Local\nvim\` |
 | Windows (powershell)| `$env:USERPROFILE\AppData\Local\nvim\` |
 
+### Install Kickstart
+
 Clone kickstart.nvim:
 
 <details><summary> Linux and Mac </summary>
 
 ```sh
-git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
+git clone https://github.com/dam9000/kickstart-modular.nvim.git "${XDG_CONFIG_HOME:-$HOME/.config}"/nvim
 ```
 
 </details>
@@ -58,13 +64,13 @@ git clone https://github.com/nvim-lua/kickstart.nvim.git "${XDG_CONFIG_HOME:-$HO
 If you're using `cmd.exe`:
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git %userprofile%\AppData\Local\nvim\ 
+git clone https://github.com/dam9000/kickstart-modular.nvim.git %userprofile%\AppData\Local\nvim\
 ```
 
 If you're using `powershell.exe`
 
 ```
-git clone https://github.com/nvim-lua/kickstart.nvim.git $env:USERPROFILE\AppData\Local\nvim\ 
+git clone https://github.com/dam9000/kickstart-modular.nvim.git $env:USERPROFILE\AppData\Local\nvim\
 ```
 
 </details>
@@ -85,20 +91,20 @@ information about extending and exploring Neovim.
 
 ### Getting Started
 
-See [Effective Neovim: Instant IDE](https://youtu.be/stqUbv-5u2s), covering the
-previous version. Note: The install via init.lua is outdated, please follow the
-install instructions in this file instead. An updated video is coming soon.
+[The Only Video You Need to Get Started with Neovim](https://youtu.be/m8C0Cq9Uv9o)
 
 ### Recommended Steps
 
 [Fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) this repo
-(so that you have your own copy that you can modify) and then installing you
-can install to your machine using the methods above.
+(so that you have your own copy that you can modify) and then install. You
+can install it on your machine using the methods above.
 
-> **NOTE**  
-> Your fork's url will be something like this: `https://github.com/<your_github_username>/kickstart.nvim.git`
+> **NOTE**
+> Your fork's url will be something like this: `https://github.com/<your_github_username>/kickstart-modular.nvim.git`
 
 #### Examples of adding popularly requested plugins
+
+NOTE: You'll need to uncomment the line in the init.lua that turns on loading custom plugins.
 
 <details>
   <summary>Adding autopairs</summary>
@@ -131,14 +137,11 @@ return {
 <details>
   <summary>Adding a file tree plugin</summary>
 
-This will install the tree plugin and add the command `:Neotree` for you. You can explore the documentation at [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim) for more information.
+This will install the tree plugin and add the command `:Neotree` for you. For more information, see the documentation at [neo-tree.nvim](https://github.com/nvim-neo-tree/neo-tree.nvim).
 
 In the file: `lua/custom/plugins/filetree.lua`, add:
 
 ```lua
--- Unless you are still migrating, remove the deprecated commands from v1.x
-vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
-
 return {
   "nvim-neo-tree/neo-tree.nvim",
   version = "*",
@@ -158,10 +161,10 @@ return {
 ### FAQ
 
 * What should I do if I already have a pre-existing neovim configuration?
-  * You should back it up, then delete all files associated with it.
+  * You should back it up and then delete all associated files.
   * This includes your existing init.lua and the neovim files in `~/.local` which can be deleted with `rm -rf ~/.local/share/nvim/`
 * Can I keep my existing configuration in parallel to kickstart?
-  * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME` to maintain multiple configurations. For example you can install the kickstart configuration in `~/.config/nvim-kickstart` and create an alias:
+  * Yes! You can use [NVIM_APPNAME](https://neovim.io/doc/user/starting.html#%24NVIM_APPNAME)`=nvim-NAME` to maintain multiple configurations. For example, you can install the kickstart configuration in `~/.config/nvim-kickstart` and create an alias:
     ```
     alias nvim-kickstart='NVIM_APPNAME="nvim-kickstart" nvim'
     ```
@@ -170,25 +173,46 @@ return {
   * See [lazy.nvim uninstall](https://github.com/folke/lazy.nvim#-uninstalling) information
 * Why is the kickstart `init.lua` a single file? Wouldn't it make sense to split it into multiple files?
   * The main purpose of kickstart is to serve as a teaching tool and a reference
-    configuration that someone can easily `git clone` as a basis for their own.
+    configuration that someone can easily use to `git clone` as a basis for their own.
     As you progress in learning Neovim and Lua, you might consider splitting `init.lua`
-    into smaller parts. A fork of kickstart that does this while maintaining the exact
+    into smaller parts. A fork of kickstart that does this while maintaining the 
     same functionality is available here:
     * [kickstart-modular.nvim](https://github.com/dam9000/kickstart-modular.nvim)
+  * *NOTE: This is the fork that splits the configuration into smaller parts.*
+    The original repo with the single `init.lua` file is available here:
+    * [kickstart.nvim](https://github.com/nvim-lua/kickstart.nvim)
   * Discussions on this topic can be found here:
     * [Restructure the configuration](https://github.com/nvim-lua/kickstart.nvim/issues/218)
     * [Reorganize init.lua into a multi-file setup](https://github.com/nvim-lua/kickstart.nvim/pull/473)
 
 ### Windows Installation
 
-Installation may require installing build tools, and updating the run command for `telescope-fzf-native`
+Installation may require installing build tools and updating the run command for `telescope-fzf-native`
 
 See `telescope-fzf-native` documentation for [more details](https://github.com/nvim-telescope/telescope-fzf-native.nvim#installation)
 
 This requires:
 
-- Install CMake, and the Microsoft C++ Build Tools on Windows
+- Install CMake and the Microsoft C++ Build Tools on Windows
 
 ```lua
 {'nvim-telescope/telescope-fzf-native.nvim', build = 'cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release && cmake --install build --prefix build' }
 ```
+
+Alternatively, one can install gcc and make which don't require changing the config,
+the easiest way is to use choco:
+
+1. install [chocolatey](https://chocolatey.org/install)
+either follow the instructions on the page or use winget,
+run in cmd as **admin**:
+```
+winget install --accept-source-agreements chocolatey.chocolatey
+```
+
+2. install all requirements using choco, exit previous cmd and
+open a new one so that choco path is set, and run in cmd as **admin**:
+```
+choco install -y neovim git ripgrep wget fd unzip gzip mingw make
+```
+
+Then, continue with the [Install Kickstart](#Install-Kickstart) step.
