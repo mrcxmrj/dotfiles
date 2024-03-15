@@ -2,3 +2,6 @@
 	path = zsh/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting
     	branch = master
+[submodule ".config/kickstart-modular.nvim"]
+	path = .config/kickstart-modular.nvim
+	url = https://github.com/mrcxmrj/kickstart-modular.nvim
