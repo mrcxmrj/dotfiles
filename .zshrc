@@ -141,10 +141,14 @@ cd() {
 alias path="echo $PATH | tr ':' '
 '"
 
-#bat config
+# bat config
 alias cat=bat
 export BAT_THEME="base16"
-#set bat as manpager, add highlighting
+# set bat as manpager, add highlighting
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
 
 alias fd=fdfind
+
+# this should be at the end
+eval "$(zoxide init zsh)"
+alias cd=z
