@@ -88,6 +88,7 @@ fi
 
 # git
 alias gs='git status'
+alias gsh='git switch '
 alias ga='git add'
 alias gph='git push'
 alias gpo='git push origin'
@@ -101,6 +102,7 @@ alias gc='git commit'
 alias gd='git diff'
 alias gco='git checkout '
 alias gl='git log'
+alias grl='git reflog'
 alias gr='git remote'
 alias grs='git remote show'
 alias glo='git log --pretty="oneline"'
