@@ -144,10 +144,10 @@ alias path="echo $PATH | tr ':' '
 '"
 
 # bat config
-alias cat=bat
+alias cat=batcat
 export BAT_THEME="base16"
 # set bat as manpager, add highlighting
-export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
+export MANPAGER="sh -c 'col -bx | batcat --theme=default -l man -p'"
 
 alias fd=fdfind
 
