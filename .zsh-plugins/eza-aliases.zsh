@@ -1,3 +1,5 @@
+# https://github.com/DarrinTisdale/zsh-aliases-exa but for eza
+
 if [[ -z $commands[eza] ]]; then
     echo 'eza is not installed. See https://github.com/eza-community/eza'
     return 1
