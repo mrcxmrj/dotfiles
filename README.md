@@ -13,7 +13,7 @@ dotfiles add <new_file>
 dotfiles commit
 ```
 
-### Adding new plugins
+## Adding new plugins
 ```sh
 dotfiles submodule add <github_url>
 ```
