@@ -17,7 +17,7 @@ config.colors = {
 	},
 }
 
-config.font = wezterm.font("Fira Code")
+config.font = wezterm.font("Fira Code Nerd Font")
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
@@ -32,6 +32,7 @@ config.window_padding = {
 
 config.force_reverse_video_cursor = true
 config.cursor_blink_rate = 0
+config.hide_mouse_cursor_when_typing = true
 
 config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
