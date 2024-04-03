@@ -32,7 +32,6 @@ config.window_padding = {
 
 config.force_reverse_video_cursor = true
 config.cursor_blink_rate = 0
-config.hide_mouse_cursor_when_typing = true
 
 config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
@@ -42,5 +41,8 @@ config.mouse_bindings = {
 		action = wezterm.action.OpenLinkAtMouseCursor,
 	},
 }
+
+-- input lag on wayland
+config.enable_wayland = false
 
 return config
