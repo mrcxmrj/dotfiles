@@ -148,8 +148,10 @@ alias cat=bat
 export BAT_THEME="base16"
 # set bat as manpager, add highlighting
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
+export MANROFFOPT="-c"
 
 alias fd=fdfind
+alias grep=rg
 
 # this should be at the end
 eval "$(zoxide init zsh)"
