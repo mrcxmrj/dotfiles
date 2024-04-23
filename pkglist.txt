@@ -84,7 +84,6 @@ sg3_utils
 sof-firmware
 spectacle
 spotify
-tldr
 ttf-fira-sans
 ttf-firacode-nerd
 ttf-opensans
