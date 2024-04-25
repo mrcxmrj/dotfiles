@@ -153,6 +153,11 @@ export MANROFFOPT="-c"
 alias fd=fdfind
 alias grep=rg
 
+# autostart tmux
+if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A >/dev/null 2>&1
+fi
+
 # this should be at the end
 eval "$(zoxide init zsh)"
 alias cd=z
