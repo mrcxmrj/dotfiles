@@ -150,7 +150,7 @@ export BAT_THEME="base16"
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
 export MANROFFOPT="-c"
 
-alias fd=fdfind
+alias find=fd
 alias grep=rg
 
 # autostart tmux
