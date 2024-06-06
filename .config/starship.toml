@@ -1,2 +1,3 @@
 [directory]
 style = 'bold blue'
+truncation_symbol = '.../'
