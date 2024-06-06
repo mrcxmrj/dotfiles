@@ -1,6 +1,6 @@
 # Set up the prompt
-fpath=($HOME/.config $fpath)
-autoload -Uz purification_prompt; purification_prompt
+# fpath=($HOME/.config $fpath)
+# autoload -Uz purification_prompt; purification_prompt
 
 setopt histignorealldups sharehistory
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
@@ -162,5 +162,6 @@ if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
 fi
 
 # this should be at the end
+eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 alias cd=z
