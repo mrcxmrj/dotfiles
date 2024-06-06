@@ -119,6 +119,9 @@ alias vi="nvim"
 # Plugins
 source /home/mrcxmrj/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /home/mrcxmrj/.zsh-plugins/eza-aliases.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5f697a"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5c6370"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
