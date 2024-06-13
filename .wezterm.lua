@@ -9,6 +9,8 @@ local scheme_def = wezterm.color.get_builtin_schemes()[scheme]
 
 config.color_scheme = scheme
 config.colors = {
+	cursor_fg = "#282c34",
+	cursor_bg = "#abb2bf",
 	tab_bar = {
 		active_tab = {
 			bg_color = scheme_def.background,
@@ -16,6 +18,8 @@ config.colors = {
 		},
 	},
 }
+-- config.force_reverse_video_cursor = true
+config.cursor_blink_rate = 0
 
 config.font = wezterm.font("Fira Code Nerd Font")
 
@@ -32,9 +36,6 @@ config.hide_tab_bar_if_only_one_tab = true
 config.window_padding = {
 	bottom = 0,
 }
-
-config.force_reverse_video_cursor = true
-config.cursor_blink_rate = 0
 
 config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
