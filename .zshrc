@@ -11,7 +11,6 @@ zstyle ':completion:*' completer _expand _complete _correct _approximate
 zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' menu select=2
-eval "$(dircolors -b)"
 zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
 zstyle ':completion:*' list-colors ''
 zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
@@ -69,9 +68,6 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Add neovim to path
-export PATH="$PATH:/opt/nvim-linux64/bin"
-
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
@@ -112,23 +108,20 @@ alias vim="nvim"
 alias vi="nvim"
 
 # Plugins
-source /home/mrcxmrj/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/mrcxmrj/.zsh-plugins/eza-aliases.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+source .zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source .zsh-plugins/eza-aliases.zsh
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5f697a"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5c6370"
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export OKTA_MFA_OPTION=push
+export ARTIFACTORY_BASE_URL=$(jq -r .metadata.artifactory_url ~/.artifactory/config)
+username=$(jq -r .username ~/.artifactory/config)
+token=$(jq -r .token ~/.artifactory/config)
+export ARTIFACTORY_AUTHORIZATION=${username}:${token}
 
 # dotfiles management
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# run vscode (doesn't open in wsl)
-export PATH=$PATH:"/mnt/c/Users/mrcxmrj/AppData/Local/Programs/Microsoft VS Code/bin/"
-export PATH=$PATH:"/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/"
-export PATH=$PATH:"/home/mrcxmrj/.local/bin/"
 
 tldr() {
   curl "cheat.sh/$1"
@@ -148,15 +141,14 @@ export BAT_THEME="base16"
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
 export MANROFFOPT="-c"
 
-alias find=fd
-alias grep=rg
-
 # autostart tmux
-if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-    exec tmux new-session -A >/dev/null 2>&1
-fi
+# if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
+#     exec tmux new-session -A >/dev/null 2>&1
+# fi
 
 # this should be at the end
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
 alias cd=z
+
+export PATH="/opt/homebrew/opt/node@20/bin:$PATH"

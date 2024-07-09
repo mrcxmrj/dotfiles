@@ -21,7 +21,7 @@ config.colors = {
 config.force_reverse_video_cursor = true
 config.cursor_blink_rate = 0
 
-config.font = wezterm.font("Fira Code Nerd Font")
+config.font = wezterm.font("FiraCode Nerd Font")
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
