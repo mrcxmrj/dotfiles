@@ -1,3 +1,8 @@
+# autostart tmux
+if [ -x "$(command -v tmux)" ] && [ -z "${TMUX}" ]; then
+    exec tmux new-session -A >/dev/null 2>&1
+fi
+
 setopt AUTO_PUSHD           # Push the current directory visited on the stack.
 setopt PUSHD_IGNORE_DUPS    # Do not store duplicates in the stack.
 setopt PUSHD_SILENT         # Do not print the directory stack after pushd or popd.
@@ -79,25 +84,30 @@ fi
 
 # git
 alias gs='git status'
-alias gsh='git switch '
 alias ga='git add'
 alias gph='git push'
 alias gpo='git push origin'
-alias gtd='git tag --delete'
-alias gtdr='git tag --delete origin'
-alias gr='git branch -r'
 alias gpl='git pull'
 alias gplo='git pull origin'
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gco='git checkout '
-alias gl='git log'
 alias grl='git reflog'
 alias gr='git remote'
 alias grs='git remote show'
+alias gl='git log'
 alias glo='git log --pretty="oneline"'
-alias glol='git log --graph --oneline --decorate'
+alias glg='git log --graph --oneline --decorate'
+
+gsh() {
+  if [ -z "$1" ]
+    then
+      gsh $(git branch | fzf --tmux bottom,50%,40%)
+    else
+      git switch $1
+  fi
+}
 
 # directory stack
 alias d='dirs -v'
@@ -108,10 +118,9 @@ alias vim="nvim"
 alias vi="nvim"
 
 # Plugins
-source .zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source .zsh-plugins/eza-aliases.zsh
+source ~/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh-plugins/eza-aliases.zsh
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-# ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5f697a"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5c6370"
 
 export OKTA_MFA_OPTION=push
@@ -120,15 +129,14 @@ username=$(jq -r .username ~/.artifactory/config)
 token=$(jq -r .token ~/.artifactory/config)
 export ARTIFACTORY_AUTHORIZATION=${username}:${token}
 
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 # dotfiles management
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 tldr() {
   curl "cheat.sh/$1"
-}
-
-cd() {
-  builtin cd "$@" && ls
 }
 
 alias path="echo $PATH | tr ':' '
@@ -141,10 +149,6 @@ export BAT_THEME="base16"
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
 export MANROFFOPT="-c"
 
-# autostart tmux
-# if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
-#     exec tmux new-session -A >/dev/null 2>&1
-# fi
 
 # this should be at the end
 eval "$(starship init zsh)"
@@ -152,3 +156,7 @@ eval "$(zoxide init zsh)"
 alias cd=z
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
