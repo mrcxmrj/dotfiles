@@ -103,7 +103,8 @@ alias glg='git log --graph --oneline --decorate'
 gsh() {
   if [ -z "$1" ]
     then
-      gsh $(git branch | fzf --tmux bottom,50%,40%)
+      gsh $(git branch | fzf --tmux center)
+      # gsh $(git branch | fzf --tmux bottom,50%,40%)
     else
       git switch $1
   fi
