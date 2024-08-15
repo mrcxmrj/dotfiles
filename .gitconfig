@@ -1,6 +1,6 @@
 [user]
-	name = mrcxmrj
-	email = marcin.zurawel@gmail.com
+    name = mrcxmrj
+    email = marcin.zurawel@gmail.com
 [includeIf "gitdir:~/work/"]
     path = .gitconfig-work
 [color]
