@@ -69,8 +69,9 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-# Add neovim to path
+# Add stuff to path
 export PATH="$PATH:/opt/nvim-linux64/bin"
+export PATH=~/bin:$PATH
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
@@ -83,25 +84,34 @@ fi
 
 # git
 alias gs='git status'
-alias gsh='git switch '
 alias ga='git add'
 alias gph='git push'
 alias gpo='git push origin'
-alias gtd='git tag --delete'
-alias gtdr='git tag --delete origin'
-alias gr='git branch -r'
 alias gpl='git pull'
 alias gplo='git pull origin'
+alias ga='git add'
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gco='git checkout '
-alias gl='git log'
 alias grl='git reflog'
+alias grb='git rebase'
 alias gr='git remote'
 alias grs='git remote show'
+alias gl='git log'
 alias glo='git log --pretty="oneline"'
-alias glol='git log --graph --oneline --decorate'
+alias glg='git log --graph --oneline --decorate'
+
+gsh() {
+  if [ -z "$1" ]
+    then
+      gsh $(git branch | fzf --tmux center)
+      git switch $(git branch | fzf --tmux center)
+    else
+      git switch $1
+      git switch $*
+  fi
+}
 
 # directory stack
 alias d='dirs -v'
@@ -112,8 +122,8 @@ alias vim="nvim"
 alias vi="nvim"
 
 # Plugins
-source /home/mrcxmrj/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /home/mrcxmrj/.zsh-plugins/eza-aliases.zsh
+source ~/.zsh-plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh-plugins/eza-aliases.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 # ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5f697a"
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#5c6370"
@@ -124,11 +134,6 @@ export NVM_DIR="$HOME/.nvm"
 
 # dotfiles management
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# run vscode (doesn't open in wsl)
-export PATH=$PATH:"/mnt/c/Users/mrcxmrj/AppData/Local/Programs/Microsoft VS Code/bin/"
-export PATH=$PATH:"/mnt/c/Users/marci/AppData/Local/Programs/Microsoft VS Code/bin/"
-export PATH=$PATH:"/home/mrcxmrj/.local/bin/"
 
 tldr() {
   curl "cheat.sh/$1"
@@ -147,9 +152,6 @@ export BAT_THEME="base16"
 # set bat as manpager, add highlighting
 export MANPAGER="sh -c 'col -bx | bat --theme=default -l man -p'"
 export MANROFFOPT="-c"
-
-alias find=fd
-alias grep=rg
 
 # autostart tmux
 if [ -x "$(command -v tmux)" ] && [ -n "${DISPLAY}" ] && [ -z "${TMUX}" ]; then
