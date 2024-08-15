@@ -84,7 +84,6 @@ fi
 
 # git
 alias gs='git status'
-alias ga='git add'
 alias gph='git push'
 alias gpo='git push origin'
 alias gpl='git pull'
@@ -105,10 +104,8 @@ alias glg='git log --graph --oneline --decorate'
 gsh() {
   if [ -z "$1" ]
     then
-      gsh $(git branch | fzf --tmux center)
       git switch $(git branch | fzf --tmux center)
     else
-      git switch $1
       git switch $*
   fi
 }
