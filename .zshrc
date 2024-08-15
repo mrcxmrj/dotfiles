@@ -84,16 +84,17 @@ fi
 
 # git
 alias gs='git status'
-alias ga='git add'
 alias gph='git push'
 alias gpo='git push origin'
 alias gpl='git pull'
 alias gplo='git pull origin'
+alias ga='git add'
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
 alias gco='git checkout '
 alias grl='git reflog'
+alias grb='git rebase'
 alias gr='git remote'
 alias grs='git remote show'
 alias gl='git log'
@@ -103,12 +104,21 @@ alias glg='git log --graph --oneline --decorate'
 gsh() {
   if [ -z "$1" ]
     then
-      gsh $(git branch | fzf --tmux center)
+      git switch $(git branch | fzf --tmux center)
       # gsh $(git branch | fzf --tmux bottom,50%,40%)
     else
-      git switch $1
+      git switch $*
   fi
 }
+# TODO:
+# ga() {
+#   if [ -z "$1" ]
+#     then
+#       git add $(git status --porcelain | sed s/^...// | fzf --tmux center)
+#     else
+#       git add $1
+#   fi
+# }
 
 # directory stack
 alias d='dirs -v'
