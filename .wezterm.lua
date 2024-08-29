@@ -22,7 +22,7 @@ config.force_reverse_video_cursor = true
 config.cursor_blink_rate = 0
 
 config.font = wezterm.font("FiraCode Nerd Font")
-config.font_size = 14
+config.font_size = 16
 
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
