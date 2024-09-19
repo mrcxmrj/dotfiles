@@ -38,6 +38,8 @@ config.window_padding = {
 	bottom = 0,
 }
 
+config.window_close_confirmation = "NeverPrompt"
+
 config.mouse_bindings = {
 	-- Ctrl-click will open the link under the mouse cursor
 	{
