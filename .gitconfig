@@ -17,6 +17,7 @@
     diffFilter = delta --color-only
 [delta]
     navigate = true    # use n and N to move between diff sections
+    syntax-theme = OneHalfDark
     features = zebra-dark
 [delta "zebra-dark"]
     minus-style = syntax "#330f0f"
@@ -34,3 +35,9 @@
     conflictstyle = diff3
 [diff]
     colorMoved = default
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
