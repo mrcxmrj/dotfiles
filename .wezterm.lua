@@ -24,6 +24,8 @@ config.cursor_blink_rate = 0
 config.font = wezterm.font("FiraCode Nerd Font")
 config.font_size = 16
 
+config.window_decorations = "RESIZE"
+
 -- config.enable_tab_bar = false
 config.hide_tab_bar_if_only_one_tab = true
 
