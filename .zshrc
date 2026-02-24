@@ -85,6 +85,7 @@ fi
 # git
 alias gs='git status'
 alias gph='git push'
+alias gphf='git push --force-with-lease'
 alias gpo='git push origin'
 alias gpl='git pull'
 alias gplo='git pull origin'
@@ -92,6 +93,8 @@ alias ga='git add'
 alias gb='git branch '
 alias gc='git commit'
 alias gd='git diff'
+alias gds='git diff --staged'
+alias gdo='git diff $(git branch --show-current) origin/$(git branch --show-current)'
 alias gco='git checkout '
 alias grl='git reflog'
 alias grb='git rebase'
@@ -144,7 +147,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 # dotfiles management
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
+alias dot='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 tldr() {
   curl "cheat.sh/$1"
@@ -164,10 +167,10 @@ export MANROFFOPT="-c"
 # this should be at the end
 eval "$(starship init zsh)"
 eval "$(zoxide init zsh)"
-alias cd=z
 
 export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
